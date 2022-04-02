@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32210.238
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Netboot.Utility.License", "Src\Netboot.Utility.License.csproj", "{394D946F-40AB-417C-8F8C-9D4E691C9385}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Netboot.Utility.License.Test", "Tests\Netboot.Utility.License.Test.csproj", "{ED1AEE4D-630D-465A-93C6-F09EAE461415}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{394D946F-40AB-417C-8F8C-9D4E691C9385}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{394D946F-40AB-417C-8F8C-9D4E691C9385}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{394D946F-40AB-417C-8F8C-9D4E691C9385}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{394D946F-40AB-417C-8F8C-9D4E691C9385}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED1AEE4D-630D-465A-93C6-F09EAE461415}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED1AEE4D-630D-465A-93C6-F09EAE461415}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED1AEE4D-630D-465A-93C6-F09EAE461415}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED1AEE4D-630D-465A-93C6-F09EAE461415}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B4FB6B7D-A162-4E2E-A45E-E8B136C17DCE}
+	EndGlobalSection
+EndGlobal

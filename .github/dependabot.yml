@@ -1,0 +1,19 @@
+# https://docs.github.com/en/code-security/supply-chain-security/configuration-options-for-dependency-updates
+version: 2
+updates:
+  - package-ecosystem: "nuget"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    reviewers:
+      - "thomas-illiet"
+    labels:
+      - "nuget dependencies"
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    reviewers:
+      - "thomas-illiet"
+    labels:
+      - "github dependencies"
