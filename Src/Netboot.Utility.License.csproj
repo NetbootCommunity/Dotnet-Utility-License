@@ -20,7 +20,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\..\Assets\Logo.png">
+    <None Include="..\Assets\Logo.png">
       <Pack>True</Pack>
       <Visible>false</Visible>
       <PackagePath></PackagePath>
