@@ -22,7 +22,7 @@ namespace Netboot.Utility.License.Test
 
             for (int i = 0; i < 100; i++)
             {
-                var keyGenerator = new KeyGenerator(256); //default key size
+                var keyGenerator = new KeyGenerator();
                 var pair = keyGenerator.GenerateKeyPair();
                 var privateKey = pair.ToEncryptedPrivateKeyString(passPhrase);
                 var publicKey = pair.ToPublicKeyString();

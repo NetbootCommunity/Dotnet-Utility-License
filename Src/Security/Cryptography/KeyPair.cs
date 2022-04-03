@@ -1,4 +1,5 @@
-﻿using Org.BouncyCastle.Crypto;
+﻿using System;
+using System.Security.Cryptography;
 
 namespace Netboot.Utility.License.Security.Cryptography;
 
@@ -7,15 +8,17 @@ namespace Netboot.Utility.License.Security.Cryptography;
 /// </summary>
 public class KeyPair
 {
-    private readonly AsymmetricCipherKeyPair keyPair;
+    private readonly AsymmetricAlgorithm _algorithm;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="KeyPair"/> class
     /// with the provided asymmetric key pair.
     /// </summary>
-    /// <param name="keyPair"></param>
-    internal KeyPair(AsymmetricCipherKeyPair keyPair)
-        => this.keyPair = keyPair;
+    /// <param name="algorithm"></param>
+    internal KeyPair(AsymmetricAlgorithm algorithm)
+    {
+        _algorithm = algorithm ?? throw new ArgumentNullException(nameof(algorithm));
+    }
 
     /// <summary>
     /// Gets the encrypted and DER encoded private key.
@@ -23,12 +26,20 @@ public class KeyPair
     /// <param name="passPhrase">The pass phrase to encrypt the private key.</param>
     /// <returns>The encrypted private key.</returns>
     public string ToEncryptedPrivateKeyString(string passPhrase)
-        => KeyFactory.ToEncryptedPrivateKeyString(keyPair.Private, passPhrase);
+    {
+        var data = _algorithm.ExportEncryptedPkcs8PrivateKey(
+            password: passPhrase,
+            pbeParameters: new PbeParameters(PbeEncryptionAlgorithm.TripleDes3KeyPkcs12, HashAlgorithmName.SHA1, 10));
+        return Convert.ToBase64String(data);
+    }
 
     /// <summary>
     /// Gets the DER encoded public key.
     /// </summary>
     /// <returns>The public key.</returns>
     public string ToPublicKeyString()
-        => KeyFactory.ToPublicKeyString(keyPair.Public);
+    {
+        var data = _algorithm.ExportSubjectPublicKeyInfo();
+        return Convert.ToBase64String(data);
+    }
 }
