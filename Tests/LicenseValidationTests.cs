@@ -11,8 +11,7 @@ namespace Netboot.Utility.License.Test
         [Test]
         public void Can_Validate_Valid_Signature()
         {
-            var publicKey =
-                @"MIIBKjCB4wYHKoZIzj0CATCB1wIBATAsBgcqhkjOPQEBAiEA/////wAAAAEAAAAAAAAAAAAAAAD///////////////8wWwQg/////wAAAAEAAAAAAAAAAAAAAAD///////////////wEIFrGNdiqOpPns+u9VXaYhrxlHQawzFOw9jvOPD4n0mBLAxUAxJ02CIbnBJNqZnjhE50mt4GffpAEIQNrF9Hy4SxCR/i85uVjpEDydwN9gS3rM6D0oTlF2JjClgIhAP////8AAAAA//////////+85vqtpxeehPO5ysL8YyVRAgEBA0IABNVLQ1xKY80BFMgGXec++Vw7n8vvNrq32PaHuBiYMm0PEj2JoB7qSSWhfgcjxNVJsxqJ6gDQVWgl0r7LH4dr0KU=";
+            var publicKey = "MIGbMBAGByqGSM49AgEGBSuBBAAjA4GGAAQBMjD7TcXgSMbjDDpkOtNe68prK21mPv3c4q8+CSUZKSz9mO8YB0oXmXKCeKORp2v4bDhx6xqNsXCMX07GmgSm7n0A6q71AkjSGDz7iNrW2TSByFql38c6wdtCKneBu4R29u9z7VE/dfGuwDjmo0Fwpo4zaZSrubwCjqkMoU0fr/j7DtQ=";
             var licenseData = @"<License>
                                   <Id>77d4c193-6088-4c64-9663-ed7398ae8c1a</Id>
                                   <Type>Trial</Type>
@@ -24,7 +23,7 @@ namespace Netboot.Utility.License.Test
                                   </Customer>
                                   <LicenseAttributes />
                                   <ProductFeatures />
-                                  <Signature>MEUCIQCCEDAldOZHHIKvYZRDdzUP4V51y23d6deeK5jIFy27GQIgDz2CndjBh4Vb8tiC3FGQ6fn3GKt8d/P5+luJH0cWv+I=</Signature>
+                                  <Signature>MIGIAkIBK3XPiLibpWt64FffHsw+ypHl/4v1KUqa6jFjANQ0XKNREW9jJ3EUcspksz3fjeQbqtFackLkV20hKJZijHv95XUCQgHL9XTGEWhn0wHptDF0bW3AxRjpLyHjqlQ1FFw/d/9qKxSjN+gUMs+dHCMFGo7zwlRQpM3fQy6cQVDU72HLjTWzzg==</Signature>
                                 </License>";
 
             var license = License.Load(licenseData);
@@ -41,8 +40,7 @@ namespace Netboot.Utility.License.Test
         [Test]
         public void Can_Validate_Invalid_Signature()
         {
-            var publicKey =
-                @"MIIBKjCB4wYHKoZIzj0CATCB1wIBATAsBgcqhkjOPQEBAiEA/////wAAAAEAAAAAAAAAAAAAAAD///////////////8wWwQg/////wAAAAEAAAAAAAAAAAAAAAD///////////////wEIFrGNdiqOpPns+u9VXaYhrxlHQawzFOw9jvOPD4n0mBLAxUAxJ02CIbnBJNqZnjhE50mt4GffpAEIQNrF9Hy4SxCR/i85uVjpEDydwN9gS3rM6D0oTlF2JjClgIhAP////8AAAAA//////////+85vqtpxeehPO5ysL8YyVRAgEBA0IABNVLQ1xKY80BFMgGXec++Vw7n8vvNrq32PaHuBiYMm0PEj2JoB7qSSWhfgcjxNVJsxqJ6gDQVWgl0r7LH4dr0KU=";
+            var publicKey = "MIGbMBAGByqGSM49AgEGBSuBBAAjA4GGAAQBMjD7TcXgSMbjDDpkOtNe68prK21mPv3c4q8+CSUZKSz9mO8YB0oXmXKCeKORp2v4bDhx6xqNsXCMX07GmgSm7n0A6q71AkjSGDz7iNrW2TSByFql38c6wdtCKneBu4R29u9z7VE/dfGuwDjmo0Fwpo4zaZSrubwCjqkMoU0fr/j7DtQ=";
             var licenseData = @"<License>
                                   <Id>77d4c193-6088-4c64-9663-ed7398ae8c1a</Id>
                                   <Type>Trial</Type>
@@ -54,7 +52,7 @@ namespace Netboot.Utility.License.Test
                                   </Customer>
                                   <LicenseAttributes />
                                   <ProductFeatures />
-                                  <Signature>MEUCIQCCEDAldOZHHIKvYZRDdzUP4V51y23d6deeK5jIFy27GQIgDz2CndjBh4Vb8tiC3FGQ6fn3GKt8d/P5+luJH0cWv+I=</Signature>
+                                  <Signature>MIGIAkIBK3XPiLibpWt64FffHsw+ypHl/4v1KUqa6jFjANQ0XKNREW9jJ3EUcspksz3fjeQbqtFackLkV20hKJZijHv95XUCQgHL9XTGEWhn0wHptDF0bW3AxRjpLyHjqlQ1FFw/d/9qKxSjN+gUMs+dHCMFGo7zwlRQpM3fQy6cQVDU72HLjTWzzg==</Signature>
                                 </License>";
 
             var license = License.Load(licenseData);
@@ -65,7 +63,7 @@ namespace Netboot.Utility.License.Test
                 .AssertValidLicense().ToList();
 
             Assert.That(validationResults, Is.Not.Null);
-            Assert.That(validationResults.Count(), Is.EqualTo(1));
+            Assert.That(validationResults.Count, Is.EqualTo(1));
             Assert.That(validationResults.FirstOrDefault(), Is.TypeOf<InvalidSignatureValidationFailure>());
         }
 
@@ -101,7 +99,7 @@ namespace Netboot.Utility.License.Test
         [Test]
         public void Can_Validate_CustomAssertion()
         {
-            var publicKey = @"MIIBKjCB4wYHKoZIzj0CATCB1wIBATAsBgcqhkjOPQEBAiEA/////wAAAAEAAAAAAAAAAAAAAAD///////////////8wWwQg/////wAAAAEAAAAAAAAAAAAAAAD///////////////wEIFrGNdiqOpPns+u9VXaYhrxlHQawzFOw9jvOPD4n0mBLAxUAxJ02CIbnBJNqZnjhE50mt4GffpAEIQNrF9Hy4SxCR/i85uVjpEDydwN9gS3rM6D0oTlF2JjClgIhAP////8AAAAA//////////+85vqtpxeehPO5ysL8YyVRAgEBA0IABNVLQ1xKY80BFMgGXec++Vw7n8vvNrq32PaHuBiYMm0PEj2JoB7qSSWhfgcjxNVJsxqJ6gDQVWgl0r7LH4dr0KU=";
+            var publicKey = "MIGbMBAGByqGSM49AgEGBSuBBAAjA4GGAAQBMjD7TcXgSMbjDDpkOtNe68prK21mPv3c4q8+CSUZKSz9mO8YB0oXmXKCeKORp2v4bDhx6xqNsXCMX07GmgSm7n0A6q71AkjSGDz7iNrW2TSByFql38c6wdtCKneBu4R29u9z7VE/dfGuwDjmo0Fwpo4zaZSrubwCjqkMoU0fr/j7DtQ=";
             var licenseData = @"<License>
                               <Id>77d4c193-6088-4c64-9663-ed7398ae8c1a</Id>
                               <Type>Trial</Type>
@@ -119,7 +117,7 @@ namespace Netboot.Utility.License.Test
                                 <Feature name=""Workflow Module"">yes</Feature>
                                 <Feature name=""Maximum Transactions"">10000</Feature>
                               </ProductFeatures>
-                              <Signature>MEUCIQCa6A7Cts5ex4rGHAPxiXpy+2ocZzTDSP7SsddopKUx5QIgHnqv0DjoOpc+K9wALqajxxvmLCRJAywCX5vDAjmWqr8=</Signature>
+                              <Signature>MIGIAkIB9aL8HVou9zON76K02jeJCSaPXEPQ1oiBFzRD76kt9qUdZInotxAo1bJW0jODzdmKwxoPQESViwfdEJOQtfOj4PwCQgGMXU37vhPziaXkbGrkCXojYdpZt+s813Qi/ePlEVycyKjFrJVzhrxmIol36DqJWHie/uqzfBDHlQwWnzzrn7++FA==</Signature>
                             </License>";
 
             var license = License.Load(licenseData);

@@ -1,6 +1,4 @@
 ﻿using Netboot.Utility.License.Security.Cryptography;
-using Org.BouncyCastle.Asn1.X9;
-using Org.BouncyCastle.Security;
 using System;
 using System.Globalization;
 using System.IO;
@@ -16,7 +14,6 @@ namespace Netboot.Utility.License;
 public class License
 {
     private readonly XElement xmlData;
-    private readonly string signatureAlgorithm = X9ObjectIdentifiers.ECDsaWithSha512.Id;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="License"/> class.
@@ -185,13 +182,10 @@ public class License
             if (signTag.Parent != null)
                 signTag.Remove();
 
-            var privKey = KeyFactory.FromEncryptedPrivateKeyString(privateKey, passPhrase);
-
             var documentToSign = Encoding.UTF8.GetBytes(xmlData.ToString(SaveOptions.DisableFormatting));
-            var signer = SignerUtilities.GetSigner(signatureAlgorithm);
-            signer.Init(true, privKey);
-            signer.BlockUpdate(documentToSign, 0, documentToSign.Length);
-            var signature = signer.GenerateSignature();
+
+            var signer = new Signer();
+            var signature = signer.Sign(documentToSign, privateKey, passPhrase);
             signTag.Value = Convert.ToBase64String(signature);
         }
         finally
@@ -207,7 +201,11 @@ public class License
     /// <returns>true if the <see cref="License.Signature"/> verifies; otherwise false.</returns>
     public bool VerifySignature(string publicKey)
     {
-        var signTag = xmlData.Element("Signature");
+        // Because we'll be manipulating the xmlData, make sure to do it on a deep clone of the xmlData.
+        // Otherwise other thread accessing xmlData at the same time may see the "changed" (and invalid!)
+        // copy of xmlData.
+        var xmlDataClone = new XElement(xmlData);
+        var signTag = xmlDataClone.Element("Signature");
 
         if (signTag == null)
             return false;
@@ -216,18 +214,14 @@ public class License
         {
             signTag.Remove();
 
-            var pubKey = KeyFactory.FromPublicKeyString(publicKey);
+            var documentToSign = Encoding.UTF8.GetBytes(xmlDataClone.ToString(SaveOptions.DisableFormatting));
 
-            var documentToSign = Encoding.UTF8.GetBytes(xmlData.ToString(SaveOptions.DisableFormatting));
-            var signer = SignerUtilities.GetSigner(signatureAlgorithm);
-            signer.Init(false, pubKey);
-            signer.BlockUpdate(documentToSign, 0, documentToSign.Length);
-
-            return signer.VerifySignature(Convert.FromBase64String(signTag.Value));
+            var signer = new Signer();
+            return signer.VerifySignature(documentToSign, Convert.FromBase64String(signTag.Value), publicKey);
         }
         finally
         {
-            xmlData.Add(signTag);
+            xmlDataClone.Add(signTag);
         }
     }
 
