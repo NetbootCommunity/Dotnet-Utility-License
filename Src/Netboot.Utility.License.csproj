@@ -1,8 +1,31 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <Authors>Thomas ILLIET</Authors>
+    <Company>NetbootCommunity</Company>
+    <PackageId>Netboot.Utility.Cache.Memory</PackageId>
+    <PackageDescription>Easy-to-use licensing library for .NET Framework, Mono, .NET Core products.</PackageDescription>
+    <IsPackable>true</IsPackable>
+    <PackageIcon>Logo.png</PackageIcon>
+    <PackageIconUrl>https://raw.githubusercontent.com/NetbootCommunity/Dotnet-Utility-License/main/Assets/Logo.png</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/NetbootCommunity</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/NetbootCommunity/Dotnet-Utility-License</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Copyright>Thomas ILLIET, NetbootCommunity contributors</Copyright>
+    <PackageTags>utility library license dotnet</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <TargetFrameworks>net6.0</TargetFrameworks>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\Assets\Logo.png">
+      <Pack>True</Pack>
+      <Visible>false</Visible>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="BouncyCastle.NetCore" Version="1.8.10" />
