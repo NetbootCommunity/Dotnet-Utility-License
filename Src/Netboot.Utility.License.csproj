@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Authors>Thomas ILLIET</Authors>
     <Company>NetbootCommunity</Company>
-    <PackageId>Netboot.Utility.Cache.Memory</PackageId>
+    <PackageId>Netboot.Utility.License</PackageId>
     <PackageDescription>Easy-to-use licensing library for .NET Framework, Mono, .NET Core products.</PackageDescription>
     <IsPackable>true</IsPackable>
     <PackageIcon>Logo.png</PackageIcon>
