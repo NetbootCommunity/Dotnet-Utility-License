@@ -17,13 +17,19 @@
     <TargetFrameworks>net6.0</TargetFrameworks>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
-
+   
   <ItemGroup>
     <None Include="..\Assets\Logo.png">
       <Pack>True</Pack>
       <Visible>false</Visible>
       <PackagePath></PackagePath>
+    </None>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+      <Visible>false</Visible>
     </None>
   </ItemGroup>
 
