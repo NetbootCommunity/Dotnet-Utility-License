@@ -12,19 +12,17 @@ on:
   schedule:
     - cron: '0 3 * * *'
 jobs:
-  format:
+  linter:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
       uses: actions/checkout@v3
-    - name: Setup .NET 6.0
-      uses: actions/setup-dotnet@v2
-      with:
-        dotnet-version: 6.0.x
-    - name: Install dotnet format
-      run: dotnet tool install --global dotnet-format --version "6.*" --add-source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet6/nuget/v3/index.json
-    - name: Format
-      run: dotnet-format --verify-no-changes -v detailed
+    - name: Lint Code Base
+      uses: github/super-linter@v4
+      env:
+        VALIDATE_ALL_CODEBASE: false
+        DEFAULT_BRANCH: main
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   scan:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
