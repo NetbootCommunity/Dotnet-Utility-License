@@ -5,11 +5,7 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
-    labels:
-      - "nuget dependencies"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "daily"
-    labels:
-      - "github dependencies"
