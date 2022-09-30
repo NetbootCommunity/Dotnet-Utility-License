@@ -32,7 +32,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
     - name: Setup .NET 6.0
-      uses: actions/setup-dotnet@v2
+      uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 6.0.x
     - name: Run SonarScanner
@@ -58,7 +58,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
     - name: Setup .NET 6.0
-      uses: actions/setup-dotnet@v2
+      uses: actions/setup-dotnet@v3
       with:
         dotnet-version: '6.0.x'
     - name: Initialize CodeQL
@@ -81,7 +81,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
     - name: Setup .NET 6.0
-      uses: actions/setup-dotnet@v2
+      uses: actions/setup-dotnet@v3
       with:
         dotnet-version: '6.0.x'
     - name: Pack for publish
@@ -100,7 +100,7 @@ jobs:
     if: github.event_name == 'release'
     steps:
     - name: Setup .NET 6.0
-      uses: actions/setup-dotnet@v2
+      uses: actions/setup-dotnet@v3
       with:
         dotnet-version: '6.0.x'
     - uses: actions/download-artifact@v3
